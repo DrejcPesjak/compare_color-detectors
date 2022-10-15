@@ -15,7 +15,7 @@ We’ve experimented with 5 classifiers, of which 4 were implemented by us.
 ## kNN classifier by Ahmet Özlü
 
 A k-Nearest Neighbors method on RGB color histograms; the code can be found in this [repo](https://github.com/ahmetozlu/color_recognition).
-Accuracy: 69.0%
+Accuracy: 69%
 
 ## Hard-coded color range detector
 
@@ -28,7 +28,7 @@ Accuracy: 90.17%
 
 Calculating Bhattacharyya distance between hue histograms of an image and the average histogram for each color.
 Code: [hist_detector.py](detectors/hist_detector/hist_detector.py)
-Accuracy: 77.0%
+Accuracy: 77%
 
 ## kNN classifier
 
