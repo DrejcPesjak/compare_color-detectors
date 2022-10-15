@@ -1,0 +1,65 @@
+ahmet ozul:
+ - dostop: args[1]
+ 
+ blue, green, red,  yellow, white, black
+  57    57    59      50	 97 	94
+
+boundarie hsv:
+ - dostop: args["image"]
+ - input: img, lower, upper
+Acc=90.17%
+ blue, green, red,  yellow, white, black
+  85    92	  82      83	 100	99
+
+histComp:
+ - dostop: args["image"]
+ - input: hueHistImg, hueHistAvg[i] 
+ colorsAcc=91 , bwAcc=49, allAcc=77
+ blue, green, red,  yellow, white, black
+  95    90    92      87	 63 	35
+  
+cnn:
+ - dostop: args["image"] / python>> load_model + def prediction(img)
+ 			--> pri prvem se model vedno znova naloži 
+ - input: rgb 128*128
+ Acc=0.9380378723144531
+ 
+knn_hsl:
+ - dostop: args["image"]
+ - input: hsl 3d histogram 
+ k=5 -> Acc=80.69%
+ 
+ 
+EVAL: google_imgs, gazebo_sim
+
+
+
+- instead of head -n , pick random pictures 
+shuf -n 100
+
+arr1=("blue" "green" "red" "yellow" "white" "black")
+endi="color/"
+start="../../"
+for cl in "${arr1[@]}"; do 
+arr=($(ls $start$cl$endi | grep .jpg | head -n 100))
+for f in "${arr[@]}"; do python3 color_classification_image.py "$start$cl$endi$f" >> file$cl.txt; done
+cat file$cl.txt | grep $cl | wc -l
+cat file$cl.txt | wc -l
+done
+
+
+
+
+
+
+
+
+
+
+for f in "${arr[@]}"; do python3 hist_detector.py -i "$direc$f"; done
+
+arr=(bluecolor/*)
+for f in "${arr[@]}"; do python3 hist_detector.py -i "$f"; done
+
+arr1=($(ls . | grep .jpg | head -n 5))
+for f in "${arr1[@]}"; do echo "$f"; done
